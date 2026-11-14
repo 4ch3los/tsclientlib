@@ -16,6 +16,8 @@ pub struct ExtraInfo {
 	/// Set for e.g. new clients to distinguish if they joined or are made available because we
 	/// subscribed to a channel.
 	pub reason: Option<Reason>,
+	/// The free-text reason that came with the event, e.g. the message of a kick or ban.
+	pub message: Option<String>,
 }
 
 /// An event gets fired when something in the data structure of a connection

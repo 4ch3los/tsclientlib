@@ -158,7 +158,7 @@ impl Connection {
 						id: PropertyId::ClientName(client.id),
 						old: PropertyValue::String(old),
 						invoker: None,
-						extra: ExtraInfo { reason: None },
+						extra: ExtraInfo { reason: None, message: None },
 					});
 				}
 			}
@@ -356,7 +356,7 @@ impl Connection {
 				id: PropertyId::ChannelMaxClients(channel_id),
 				old: PropertyValue::OptionMaxClients(channel.max_clients.take()),
 				invoker: msg.get_invoker(),
-				extra: ExtraInfo { reason: Some(msg.reason) },
+				extra: ExtraInfo { reason: Some(msg.reason), message: None },
 			});
 			channel.max_clients = Some(ch);
 		}
@@ -376,7 +376,7 @@ impl Connection {
 				id: PropertyId::ChannelMaxFamilyClients(channel_id),
 				old: PropertyValue::OptionMaxClients(channel.max_family_clients.take()),
 				invoker: msg.get_invoker(),
-				extra: ExtraInfo { reason: Some(msg.reason) },
+				extra: ExtraInfo { reason: Some(msg.reason), message: None },
 			});
 			channel.max_family_clients = Some(ch_fam);
 		}
@@ -429,7 +429,7 @@ impl Connection {
 			id: PropertyId::ChannelChannelType(channel_id),
 			old: PropertyValue::ChannelType(channel.channel_type),
 			invoker: msg.get_invoker(),
-			extra: ExtraInfo { reason: Some(msg.reason) },
+			extra: ExtraInfo { reason: Some(msg.reason), message: None },
 		});
 		channel.channel_type = typ;
 		Ok(())
@@ -485,7 +485,7 @@ impl Connection {
 					id: PropertyId::ClientAwayMessage(client_id),
 					old: PropertyValue::OptionString(client.away_message.take()),
 					invoker: msg.get_invoker(),
-					extra: ExtraInfo { reason: None },
+					extra: ExtraInfo { reason: None, message: None },
 				});
 				client.away_message = away;
 			}
@@ -496,7 +496,7 @@ impl Connection {
 						id: PropertyId::ClientAwayMessage(client_id),
 						old: PropertyValue::OptionString(client.away_message.take()),
 						invoker: msg.get_invoker(),
-						extra: ExtraInfo { reason: None },
+						extra: ExtraInfo { reason: None, message: None },
 					});
 					client.away_message = Some(away_message.clone());
 				}
@@ -536,7 +536,7 @@ impl Connection {
 				id: PropertyId::ClientTalkPowerRequest(client_id),
 				old: PropertyValue::OptionTalkPowerRequest(client.talk_power_request.take()),
 				invoker: msg.get_invoker(),
-				extra: ExtraInfo { reason: None },
+				extra: ExtraInfo { reason: None, message: None },
 			});
 			client.talk_power_request = talk_request;
 		}
@@ -565,7 +565,7 @@ impl Connection {
 			id: PropertyId::ChannelSubscribed(channel_id),
 			old: PropertyValue::Bool(channel.subscribed),
 			invoker: None,
-			extra: ExtraInfo { reason: None },
+			extra: ExtraInfo { reason: None, message: None },
 		});
 		channel.subscribed = true;
 		Ok(())
@@ -580,7 +580,7 @@ impl Connection {
 			id: PropertyId::ChannelSubscribed(channel_id),
 			old: PropertyValue::Bool(channel.subscribed),
 			invoker: None,
-			extra: ExtraInfo { reason: None },
+			extra: ExtraInfo { reason: None, message: None },
 		});
 		channel.subscribed = false;
 
@@ -595,7 +595,7 @@ impl Connection {
 				id: PropertyId::Client(id),
 				old: PropertyValue::Client(self.clients.remove(&id).unwrap()),
 				invoker: None,
-				extra: ExtraInfo { reason: None },
+				extra: ExtraInfo { reason: None, message: None },
 			});
 		}
 		Ok(())
@@ -613,7 +613,7 @@ impl Connection {
 					id: PropertyId::ChannelOrder(c.id),
 					old: PropertyValue::ChannelId(c.order),
 					invoker: None,
-					extra: ExtraInfo { reason: None },
+					extra: ExtraInfo { reason: None, message: None },
 				});
 				c.order = channel_order;
 				true
@@ -638,7 +638,7 @@ impl Connection {
 					id: PropertyId::ChannelOrder(c.id),
 					old: PropertyValue::ChannelId(c.order),
 					invoker: None,
-					extra: ExtraInfo { reason: None },
+					extra: ExtraInfo { reason: None, message: None },
 				});
 				c.order = channel_id;
 				true
@@ -683,7 +683,7 @@ impl Connection {
 						id: PropertyId::ChannelOrder(channel.id),
 						old: PropertyValue::ChannelId(channel.order),
 						invoker: None,
-						extra: ExtraInfo { reason: None },
+						extra: ExtraInfo { reason: None, message: None },
 					});
 					channel.order = order;
 				}
@@ -708,7 +708,7 @@ impl Connection {
 				id: PropertyId::ChannelSubscribed(msg.target_channel_id),
 				old: PropertyValue::Bool(channel.subscribed),
 				invoker: None,
-				extra: ExtraInfo { reason: None },
+				extra: ExtraInfo { reason: None, message: None },
 			});
 			channel.subscribed = true;
 		}
